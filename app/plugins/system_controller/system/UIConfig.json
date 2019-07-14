@@ -36,6 +36,7 @@
         {
           "id":"config_wizard",
           "element": "button",
+          "hidden": true,
           "label": "TRANSLATE.WIZARD.RUN_FIRST_CONFIG_WIZARD",
           "onClick": {"type":"emit", "message":"runFirstConfigWizard", "data":""}
         },
@@ -89,6 +90,7 @@
     {
       "id":"section_updates",
       "type": "section",
+      "hidden": true,
       "label": "TRANSLATE.SYSTEM.SYSTEM_UPDATES",
       "icon": "fa-refresh",
       "content": [
