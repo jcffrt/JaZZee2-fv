@@ -1,331 +1,333 @@
 {
-  "page": {
-    "label": "TRANSLATE.NETWORK.NETWORK_SETTINGS"
-  },
-  "sections": [
-    {"coreSection":"network-status"},
-   {
-      "id": "section_wired_network",
-      "element": "section",
-      "label": "TRANSLATE.NETWORK.WIRED_NETWORK",
-      "icon": "fa-plug",
-      "onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveWiredNet"},
-      "saveButton": {
-        "label": "TRANSLATE.COMMON.SAVE",
-        "data": [
-          "dhcp",
-          "static_ip",
-          "static_netmask",
-          "static_gateway"
-        ]
-      },
-      "content": [
-        {
-          "id": "dhcp",
-          "element": "switch",
-          "doc" : "TRANSLATE.NETWORK.AUTOMATIC_IP_DOC",
-          "label": "TRANSLATE.NETWORK.AUTOMATIC_IP",
-          "value": true
-        },
-        {
-          "id": "static_ip",
-          "type": "ip",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "192.168.1.123"
-            }
-          ],
-          "label": "TRANSLATE.NETWORK.STATIC_IP",
-          "value": "",
-          "visibleIf": {
-            "field": "dhcp",
-            "value": false
-          }
-        },
-        {
-          "id": "static_netmask",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "255.255.255.0"
-            }
-          ],
-          "type": "ip",
-          "label": "TRANSLATE.NETWORK.NETMASK",
-          "visibleIf": {
-            "field": "dhcp",
-            "value": false
-          }
-        },
-        {
-          "id": "static_gateway",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "192.168.1.1"
-            }
-          ],
-          "type": "ip",
-          "label": "TRANSLATE.NETWORK.GATEWAY",
-          "visibleIf": {
-            "field": "dhcp",
-            "value": false
-          }
-        }
-      ]
-    },
-    {
-      "id": "section_wireless_network",
-      "element": "section",
-      "label": "TRANSLATE.NETWORK.WIRELESS_NETWORK",
-      "icon": "fa-wifi",
-      "onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveWirelessNet"},
-      "saveButton": {
-        "label": "TRANSLATE.COMMON.SAVE",
-        "data": [
-		  "wireless_enabled",
-          "wireless_dhcp",
-          "wireless_static_ip",
-          "wireless_static_netmask",
-          "wireless_static_gateway"
-        ]
-      },
-      "content": [
-		{
-		  "id": "wireless_enabled",
-		  "element": "switch",
-		  "doc" : "TRANSLATE.NETWORK.WIRELESS_ENABLED_DOC",
-		  "label": "TRANSLATE.NETWORK.WIRELESS_ENABLED",
-		  "value": true
-		},
-        {
-          "id": "wireless_dhcp",
-          "element": "switch",
-		  "doc" : "TRANSLATE.NETWORK.AUTOMATIC_IP_DOC",
-          "label": "TRANSLATE.NETWORK.AUTOMATIC_IP",
-          "value": true
-        },
-        {
-          "id": "wireless_static_ip",
-          "type": "ip",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "192.168.1.123"
-            }
-          ],
-          "label": "TRANSLATE.NETWORK.STATIC_IP",
-          "value": "",
-          "visibleIf": {
-            "field": "wireless_dhcp",
-            "value": false
-          }
-        },
-        {
-          "id": "wireless_static_netmask",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "255.255.255.0"
-            }
-          ],
-          "type": "ip",
-          "label": "TRANSLATE.NETWORK.NETMASK",
-          "visibleIf": {
-            "field": "wireless_dhcp",
-            "value": false
-          }
-        },
-        {
-          "id": "wireless_static_gateway",
-          "element": "input",
-          "attributes": [
-            {
-              "placeholder": "192.168.1.1"
-            }
-          ],
-          "type": "ip",
-          "label": "TRANSLATE.NETWORK.GATEWAY",
-          "visibleIf": {
-            "field": "wireless_dhcp",
-            "value": false
-          }
-        }
-      ]
-    },
-    {"coreSection":"wifi"},
-	{
-	  "id": "section_hotspot",
-	  "element": "section",
-	  "label": "TRANSLATE.NETWORK.HOTSPOT_SETTINGS",
-	  "icon": "fa-wifi",
-	  "onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveHotspotSettings"},
-	  "saveButton": {
-		"label": "TRANSLATE.COMMON.SAVE",
-		"data": [
-		  "enable_hotspot",
-		  "hotspot_fallback",
-		  "hotspot_name",
-		  "hotspot_protection",
-		  "hotspot_password",
-		  "hotspot_channel"
-		]
-	  },
-	  "content": [
-		{
-		  "id": "enable_hotspot",
-		  "element": "switch",
-		  "doc" : "TRANSLATE.NETWORK.ENABLE_HOTSPOT_DOC",
-		  "label": "TRANSLATE.NETWORK.ENABLE_HOTSPOT",
-		  "value": true
-		},
-		{
-		  "id": "hotspot_fallback",
-		  "element": "switch",
-		  "doc" : "TRANSLATE.NETWORK.HOTSPOT_FALLBACK_DOC",
-		  "label": "TRANSLATE.NETWORK.HOTSPOT_FALLBACK",
-		  "value": false,
-		  "visibleIf": {
-			"field": "enable_hotspot",
-			"value": true
-		  }
-		},
-		{
-		  "id": "hotspot_name",
-		  "type": "string",
-		  "element": "input",
-		  "label": "TRANSLATE.NETWORK.HOTSPOT_NAME",
-		  "value": "",
-		  "visibleIf": {
-			"field": "enable_hotspot",
-			"value": true
-		  }
-		},
-		{
-		  "id": "hotspot_protection",
-		  "element": "switch",
-		  "doc" : "Password Protection for Hotspot",
-		  "label": "TRANSLATE.NETWORK.HOTSPOT_PROTECTION",
-		  "value": true,
-		  "visibleIf": {
-			"field": "enable_hotspot",
-			"value": true
-		  }
-		},
-		{
-		  "id": "hotspot_password",
-		  "type": "password",
-		  "element": "input",
-		  "label": "TRANSLATE.NETWORK.HOTSPOT_PASSWORD",
-		  "doc": "TRANSLATE.NETWORK.HOTSPOT_PASSWORD_DOC",
-		  "value": "",
-		  "visibleIf": {
-			"field": "enable_hotspot",
-			"value": true
-		  }
-		},
-		{
-		  "id": "hotspot_channel",
-		  "element": "select",
-		  "label": "TRANSLATE.NETWORK.HOTSPOT_CHANNEL",
-		  "doc": "TRANSLATE.NETWORK.HOTSPOT_CHANNEL_DOC",
-		  "value":  {
-			"value":0,
-			"label": "0"
-		  },
-		  "options": [
-			{
-			"value":1,
-			"label": "1"
-		  },
-			{
-			  "value":2,
-			  "label": "2"
-			},
-			{
-			  "value":3,
-			  "label": "3"
-			},
-			{
-			  "value":4,
-			  "label": "4"
-			},
-			{
-			  "value":5,
-			  "label": "5"
-			},
-			{
-			  "value":6,
-			  "label": "6"
-			},
-			{
-			  "value":7,
-			  "label": "8"
-			},
-			{
-			  "value":9,
-			  "label": "9"
-			},
-			{
-			  "value":10,
-			  "label": "10"
-			}
-		  ],
-		  "visibleIf": {
-			"field": "enable_hotspot",
-			"value": true
-		  }
-		}
-	  ]
+	"page": {
+	  "label": "TRANSLATE.NETWORK.NETWORK_SETTINGS"
 	},
-	{
-	  "id": "dns_settings",
-	  "element": "section",
-	  "label": "TRANSLATE.NETWORK.DNS_SETTINGS",
-	  "icon": "fa-book",
-	  "onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveDnsSettings"},
-	  "saveButton": {
-		"label": "TRANSLATE.COMMON.SAVE",
-		"data": [
-		  "enable_custom_dns",
-		  "primary_dns",
-		  "secondary_dns"
+	"sections": [
+	  {"coreSection":"network-status"},
+	 {
+		"id": "section_wired_network",
+		"element": "section",
+		"label": "TRANSLATE.NETWORK.WIRED_NETWORK",
+		"icon": "fa-plug",
+		"onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveWiredNet"},
+		"saveButton": {
+		  "label": "TRANSLATE.COMMON.SAVE",
+		  "data": [
+			"dhcp",
+			"static_ip",
+			"static_netmask",
+			"static_gateway"
+		  ]
+		},
+		"content": [
+		  {
+			"id": "dhcp",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.AUTOMATIC_IP_DOC",
+			"label": "TRANSLATE.NETWORK.AUTOMATIC_IP",
+			"value": true
+		  },
+		  {
+			"id": "static_ip",
+			"type": "ip",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "192.168.1.123"
+			  }
+			],
+			"label": "TRANSLATE.NETWORK.STATIC_IP",
+			"value": "",
+			"visibleIf": {
+			  "field": "dhcp",
+			  "value": false
+			}
+		  },
+		  {
+			"id": "static_netmask",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "255.255.255.0"
+			  }
+			],
+			"type": "ip",
+			"label": "TRANSLATE.NETWORK.NETMASK",
+			"visibleIf": {
+			  "field": "dhcp",
+			  "value": false
+			}
+		  },
+		  {
+			"id": "static_gateway",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "192.168.1.1"
+			  }
+			],
+			"type": "ip",
+			"label": "TRANSLATE.NETWORK.GATEWAY",
+			"visibleIf": {
+			  "field": "dhcp",
+			  "value": false
+			}
+		  }
 		]
 	  },
-	  "content": [
-		{
-		  "id": "enable_custom_dns",
-		  "element": "switch",
-		  "doc" : "TRANSLATE.NETWORK.ENABLE_CUSTOM_DNS_DOC",
-		  "label": "TRANSLATE.NETWORK.ENABLE_CUSTOM_DNS",
-		  "value": false
+	  {
+		"id": "section_wireless_network",
+		"element": "section",
+		"label": "TRANSLATE.NETWORK.WIRELESS_NETWORK",
+		"icon": "fa-wifi",
+		"onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveWirelessNet"},
+		"saveButton": {
+		  "label": "TRANSLATE.COMMON.SAVE",
+		  "data": [
+			"wireless_enabled",
+			"wireless_dhcp",
+			"wireless_static_ip",
+			"wireless_static_netmask",
+			"wireless_static_gateway"
+		  ]
 		},
-		{
-		  "id": "primary_dns",
-		  "type": "ip",
-		  "element": "input",
-		  "label": "TRANSLATE.NETWORK.PRIMARY_DNS",
-		  "doc": "TRANSLATE.NETWORK.PRIMARY_DNS_DOC",
-		  "value": "",
-		  "visibleIf": {
-			"field": "enable_custom_dns",
+		"content": [
+		  {
+			"id": "wireless_enabled",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.WIRELESS_ENABLED_DOC",
+			"label": "TRANSLATE.NETWORK.WIRELESS_ENABLED",
 			"value": true
+		  },
+		  {
+			"id": "wireless_dhcp",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.AUTOMATIC_IP_DOC",
+			"label": "TRANSLATE.NETWORK.AUTOMATIC_IP",
+			"value": true
+		  },
+		  {
+			"id": "wireless_static_ip",
+			"type": "ip",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "192.168.1.123"
+			  }
+			],
+			"label": "TRANSLATE.NETWORK.STATIC_IP",
+			"value": "",
+			"visibleIf": {
+			  "field": "wireless_dhcp",
+			  "value": false
+			}
+		  },
+		  {
+			"id": "wireless_static_netmask",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "255.255.255.0"
+			  }
+			],
+			"type": "ip",
+			"label": "TRANSLATE.NETWORK.NETMASK",
+			"visibleIf": {
+			  "field": "wireless_dhcp",
+			  "value": false
+			}
+		  },
+		  {
+			"id": "wireless_static_gateway",
+			"element": "input",
+			"attributes": [
+			  {
+				"placeholder": "192.168.1.1"
+			  }
+			],
+			"type": "ip",
+			"label": "TRANSLATE.NETWORK.GATEWAY",
+			"visibleIf": {
+			  "field": "wireless_dhcp",
+			  "value": false
+			}
 		  }
+		]
+	  },
+	  {"coreSection":"wifi"},
+	  {
+		"id": "section_hotspot",
+		"element": "section",
+		"label": "TRANSLATE.NETWORK.HOTSPOT_SETTINGS",
+		"icon": "fa-wifi",
+		"onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveHotspotSettings"},
+		"saveButton": {
+		  "label": "TRANSLATE.COMMON.SAVE",
+		  "data": [
+			"enable_hotspot",
+			"hotspot_fallback",
+			"hotspot_name",
+			"hotspot_protection",
+			"hotspot_password",
+			"hotspot_channel"
+		  ]
 		},
-		{
-		  "id": "secondary_dns",
-		  "type": "ip",
-		  "element": "input",
-		  "label": "TRANSLATE.NETWORK.SECONDARYY_DNS",
-		  "doc": "TRANSLATE.NETWORK.SECONDARY_DNS_DOC",
-		  "value": "",
-		  "visibleIf": {
-			"field": "enable_custom_dns",
+		"content": [
+		  {
+			"id": "enable_hotspot",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.ENABLE_HOTSPOT_DOC",
+			"label": "TRANSLATE.NETWORK.ENABLE_HOTSPOT",
 			"value": true
+		  },
+		  {
+			"id": "hotspot_fallback",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.HOTSPOT_FALLBACK_DOC",
+			"label": "TRANSLATE.NETWORK.HOTSPOT_FALLBACK",
+			"value": false,
+			"visibleIf": {
+			  "field": "enable_hotspot",
+			  "value": true
+			}
+		  },
+		  {
+			"id": "hotspot_name",
+			"type": "string",
+			"element": "input",
+			"label": "TRANSLATE.NETWORK.HOTSPOT_NAME",
+			"value": "",
+			"visibleIf": {
+			  "field": "enable_hotspot",
+			  "value": true
+			}
+		  },
+		  {
+			"id": "hotspot_protection",
+			"element": "switch",
+			"doc" : "Password Protection for Hotspot",
+			"label": "TRANSLATE.NETWORK.HOTSPOT_PROTECTION",
+			"value": true,
+			"visibleIf": {
+			  "field": "enable_hotspot",
+			  "value": true
+			}
+		  },
+		  {
+			"id": "hotspot_password",
+			"type": "password",
+			"element": "input",
+			"label": "TRANSLATE.NETWORK.HOTSPOT_PASSWORD",
+			"doc": "TRANSLATE.NETWORK.HOTSPOT_PASSWORD_DOC",
+			"value": "",
+			"visibleIf": {
+			  "field": "enable_hotspot",
+			  "value": true
+			}
+		  },
+		  {
+			"id": "hotspot_channel",
+			"element": "select",
+			"label": "TRANSLATE.NETWORK.HOTSPOT_CHANNEL",
+			"doc": "TRANSLATE.NETWORK.HOTSPOT_CHANNEL_DOC",
+			"value":  {
+			  "value":0,
+			  "label": "0"
+			},
+			"options": [
+			  {
+			  "value":1,
+			  "label": "1"
+			},
+			  {
+				"value":2,
+				"label": "2"
+			  },
+			  {
+				"value":3,
+				"label": "3"
+			  },
+			  {
+				"value":4,
+				"label": "4"
+			  },
+			  {
+				"value":5,
+				"label": "5"
+			  },
+			  {
+				"value":6,
+				"label": "6"
+			  },
+			  {
+				"value":7,
+				"label": "8"
+			  },
+			  {
+				"value":9,
+				"label": "9"
+			  },
+			  {
+				"value":10,
+				"label": "10"
+			  }
+			],
+			"visibleIf": {
+			  "field": "enable_hotspot",
+			  "value": true
+			}
 		  }
-		}
-	  ]
-	}
-  ]
-}
+		]
+	  },
+	  {
+		"id": "dns_settings",
+		"element": "section",
+		"hidden": true,
+		"label": "TRANSLATE.NETWORK.DNS_SETTINGS",
+		"icon": "fa-book",
+		"onSave": {"type":"controller", "endpoint":"system_controller/network", "method":"saveDnsSettings"},
+		"saveButton": {
+		  "label": "TRANSLATE.COMMON.SAVE",
+		  "data": [
+			"enable_custom_dns",
+			"primary_dns",
+			"secondary_dns"
+		  ]
+		},
+		"content": [
+		  {
+			"id": "enable_custom_dns",
+			"element": "switch",
+			"doc" : "TRANSLATE.NETWORK.ENABLE_CUSTOM_DNS_DOC",
+			"label": "TRANSLATE.NETWORK.ENABLE_CUSTOM_DNS",
+			"value": false
+		  },
+		  {
+			"id": "primary_dns",
+			"type": "ip",
+			"element": "input",
+			"label": "TRANSLATE.NETWORK.PRIMARY_DNS",
+			"doc": "TRANSLATE.NETWORK.PRIMARY_DNS_DOC",
+			"value": "",
+			"visibleIf": {
+			  "field": "enable_custom_dns",
+			  "value": true
+			}
+		  },
+		  {
+			"id": "secondary_dns",
+			"type": "ip",
+			"element": "input",
+			"label": "TRANSLATE.NETWORK.SECONDARYY_DNS",
+			"doc": "TRANSLATE.NETWORK.SECONDARY_DNS_DOC",
+			"value": "",
+			"visibleIf": {
+			  "field": "enable_custom_dns",
+			  "value": true
+			}
+		  }
+		]
+	  }
+	]
+  }
+  
